@@ -90,8 +90,8 @@ namespace ScheduledTaskAdapter.TaskComponents
             {
                 MemoryStream memoryStream = new MemoryStream();
 
-                using (TransactionScope ts = new TransactionScope(transaction, TimeSpan.FromHours(1), EnterpriseServicesInteropOption.Full))
-                {
+                //using (TransactionScope ts = new TransactionScope(transaction, TimeSpan.FromHours(1), EnterpriseServicesInteropOption.Full))
+                //{
                     using (SqlConnection connection = new SqlConnection(args.ConnectionString))
                     {
                         connection.Open();
@@ -118,9 +118,9 @@ namespace ScheduledTaskAdapter.TaskComponents
                             writer.Flush();
                         }                       
                     }
-                    //  An exception will have skipped this next line
-                    ts.Complete();
-                }
+                //    //  An exception will have skipped this next line
+                //    ts.Complete();
+                //}
                 memoryStream.Seek(0, SeekOrigin.Begin);
                 return memoryStream;
             }

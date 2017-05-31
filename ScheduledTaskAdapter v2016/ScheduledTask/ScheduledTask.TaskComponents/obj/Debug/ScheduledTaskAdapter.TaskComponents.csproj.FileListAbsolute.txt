@@ -1,0 +1,6 @@
+D:\开源项目\biztalkscheduledadapter\ScheduledTaskAdapter v2016\ScheduledTask\ScheduledTask.TaskComponents\obj\Debug\ScheduledTaskAdapter.TaskComponents.csprojResolveAssemblyReference.cache
+D:\ScheduledTaskAdapter v2016\ScheduledTask\ScheduledTask.TaskComponents\obj\Debug\ScheduledTaskAdapter.TaskComponents.csprojResolveAssemblyReference.cache
+D:\ScheduledTaskAdapter v2016\ScheduledTask\ScheduledTask.TaskComponents\bin\Debug\ScheduledTaskAdapter.TaskComponents.dll
+D:\ScheduledTaskAdapter v2016\ScheduledTask\ScheduledTask.TaskComponents\bin\Debug\ScheduledTaskAdapter.TaskComponents.pdb
+D:\ScheduledTaskAdapter v2016\ScheduledTask\ScheduledTask.TaskComponents\obj\Debug\ScheduledTaskAdapter.TaskComponents.dll
+D:\ScheduledTaskAdapter v2016\ScheduledTask\ScheduledTask.TaskComponents\obj\Debug\ScheduledTaskAdapter.TaskComponents.pdb

@@ -107,6 +107,7 @@
     <Reference Include="System.Data">
       <Name>System.Data</Name>
     </Reference>
+    <Reference Include="System.Data.OracleClient" />
     <Reference Include="system.drawing">
       <Name>system.drawing</Name>
     </Reference>
@@ -128,6 +129,7 @@
     <Compile Include="IScheduledTaskStreamProvider.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="OracleSqlStreamProvider.cs" />
     <Compile Include="SQLStreamProvider.cs" />
     <Compile Include="Task.cs" />
     <Compile Include="XmlStringStreamProvider.cs">
