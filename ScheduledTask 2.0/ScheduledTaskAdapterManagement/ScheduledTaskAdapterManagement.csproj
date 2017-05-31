@@ -1,0 +1,181 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{CBEAB508-CA82-4DAC-B3EC-0613482568A7}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>ScheduledTaskAdapterManagement</AssemblyName>
+    <AssemblyOriginatorKeyFile>ScheduledTaskAdapter.snk</AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>ScheduledTaskAdapterManagement</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <SignAssembly>true</SignAssembly>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.BizTalk.Adapter.Framework">
+      <Name>Microsoft.Biztalk.Adapter.Framework</Name>
+      <HintPath>C:\Program Files\Microsoft BizTalk Server 2004\Developer Tools\Microsoft.Biztalk.Adapter.Framework.dll</HintPath>
+      <AssemblyFolderKey>hklm\dn\biztalk server developer tools</AssemblyFolderKey>
+    </Reference>
+    <Reference Include="Microsoft.BizTalk.Pipeline">
+      <Name>Microsoft.BizTalk.Pipeline</Name>
+      <HintPath>C:\Program Files\Microsoft BizTalk Server 2004\Microsoft.BizTalk.Pipeline.dll</HintPath>
+      <AssemblyFolderKey>hklm\dn\biztalk server basic</AssemblyFolderKey>
+    </Reference>
+    <Reference Include="Microsoft.BizTalk.Scheduler, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Microsoft BizTalk Server 2006\Microsoft.BizTalk.Scheduler.dll</HintPath>
+    </Reference>
+    <Reference Include="mscorlib">
+      <Name>mscorlib</Name>
+    </Reference>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+    <ProjectReference Include="..\Calendar.Schedules\Calendar.Schedules.csproj">
+      <Name>Calendar.Schedules</Name>
+      <Project>{F6904BB0-FAF2-4C5C-99FA-DA72A342A51A}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\ScheduledTask.TaskComponents\ScheduledTask.TaskComponents.csproj">
+      <Project>{C9205F64-8591-443E-BD2B-7D4EEDC6F854}</Project>
+      <Name>ScheduledTask.TaskComponents</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AdapterManagement.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="QualifiedTypeNameDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ScheduleDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TaskPropertiesDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UIEditors.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="XmlTextEditorDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <None Include="Biztalk.Adapter.ScheduledTask.reg" />
+    <None Include="ReceiveLocation.xsx">
+      <DependentUpon>ReceiveLocation.xsd</DependentUpon>
+    </None>
+    <None Include="ScheduledTaskAdapter.snk" />
+    <EmbeddedResource Include="QualifiedTypeNameDialog.resx">
+      <DependentUpon>QualifiedTypeNameDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReceiveLocation.xsd">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScheduleDialog.resx">
+      <DependentUpon>ScheduleDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="scheduledtask.ico" />
+    <EmbeddedResource Include="task.ico" />
+    <EmbeddedResource Include="TaskPropertiesDialog.resx">
+      <DependentUpon>TaskPropertiesDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="texteditor.ico" />
+    <EmbeddedResource Include="wizard.ico" />
+    <EmbeddedResource Include="XmlTextEditorDialog.resx">
+      <DependentUpon>XmlTextEditorDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

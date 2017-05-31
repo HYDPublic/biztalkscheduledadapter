@@ -1,0 +1,82 @@
+<html>
+	<head>
+		<title>ScheduledTask Adapter Readme</title>
+		<meta http-equiv="Content-Language" content="en-us" />
+		<meta http-equiv="Content-Type" content="text/html; charset=windows-1252" />
+	</head>
+	<body style="font-family:Verdana;font-size:70%">
+		<h4>
+		========================================================================<br/>
+		&nbsp;&nbsp;ScheduledTask Adapter Readme<br/>
+		========================================================================<br/>
+		</h4>
+		<h5>Requirements</h5>
+		<p>The ScheduledTask Adapter will work with BizTalk Server 2004 or Biztalk Server 2006 Beta1</p>
+		<p>Biztalk Server 2004:  configuration of the adapter requires Visual Studio 2003 or the Biztalk
+			Explorer from <a href="http://martijnh.blogspot.com/">Martijn Hoogendoorn</a>. The BizTalk 2004 Administration Management Tool  does not support custom editors </p>
+		<p>Biztalk Server 2006 Beta 2: configuration of the adapter requires Visual Studio 2005 or the Biztalk Administration Console</p>
+		<hr>
+		<h5>Installation</h5>
+		<p>If you already have a previous version see <a href="#Reinstall">Reinstallation</a>
+		<p>To install the adapter open "ScheduledTaskAdapter.msi".</p>
+		<p>Choose install for <b>Everyone</b> otherwise you will not be able to register the adapter with Biztalk
+		<p>The setup will install the following assemblies in the selected folder:<br />
+			<i>(default: C:\Program Files\Biztalk ScheduledTask Adapter)</i></p>
+		<ul>
+			<li>
+				ScheduledTaskAdapter.dll</li>
+			<li>
+				ScheduledTaskAdapterManagement.dll</li>
+			<li>
+				Calendar.Schedules.dll</li>
+			<li>
+				ScheduledTask.TaskComponents.dll</li>
+			<li>
+				Biztalk.Adapter.ScheduledTaskProperties.dll</li>
+		</ul>
+		<p>The setup will add the following assemblies to the GAC</p>
+		<ul>
+			<li>
+				ScheduledTaskAdapterManagement.dll</li>
+			<li>
+				Calendar.Schedules.dll</li>
+			<li>
+				ScheduledTask.TaskComponents.dll</li>
+			<li>
+				Microsoft.BizTalk.Scheduler.dll</li>
+		</ul>
+		<p>
+		The setup will install and register the following help file:<p>
+			<ul>
+				./Documentation/ScheduledTaskAdapter.HxS</ul>
+		<p>
+		<p>The setup will add the following registry key:</p>
+		<ul>
+			HKEY_CLASSES_ROOT\CLSID\{7A4BDD2A-3063-4f57-A108-DEA05DEB417E}</ul>
+		<h5><b>Post-Installation</b></h5>
+		<p><b>Register the Adapter with Biztalk</b><br/>
+		Use the Biztalk Administation Console (2004/2006) to add a new adapter<br/>
+		       <ul>Name = <b>Schedule</b><br/>
+		      Adapter =<b>Schedule</b><br/>
+		      Comment=<i>optional</i></ul>
+		 </p>
+
+		<p><b>Using the adapter Context Properties</b><br/>
+		To utilise the ScheduledTask adapter's context properties within a filter or
+				orchestration the <b>Biztalk.Adapter.ScheduledTaskProperties.dll</b> must be
+				deployed into the BiztalkMgmtDb</br>
+			This can be achieved using the Biztalk Deployment Wizard or equivalent tool</p>
+		<p>The Biztalk assembly containing the orchestration code must also add this
+			assembly as a reference</p>
+		<p>&nbsp;</p>
+		<hr>
+		<h5 id="Reinstall">Reinstallation</h5>
+		<p>The quickest method of reinstalltion is:<p>
+		<ul>
+		<li>Stop any Biztalk Host instance service that uses the ScheduledTask Adapter</li>
+		<li>Control Panel -> Add and Remove Programs -> Uninstall <b>Biztalk ScheduledTask Adapter</b></li>
+		<li>Install the adapter using the new "ScheduledTaskAdapter.msi".</li>
+		<li>Start the Biztalk Host instance services</li>
+		</ul>
+	</body>
+</html>

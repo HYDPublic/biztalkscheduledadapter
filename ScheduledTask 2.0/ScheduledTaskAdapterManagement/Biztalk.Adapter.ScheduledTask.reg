@@ -1,0 +1,28 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\CLSID\{A35C0D84-DAE6-4de0-BDCC-3A20426AF41D}]
+@="Biztalk ScheduledTask Adapter"
+"AppID"="{12A6EBAA-CF68-4B58-B36E-A5A19B22C04E}"
+
+[HKEY_CLASSES_ROOT\CLSID\{A35C0D84-DAE6-4de0-BDCC-3A20426AF41D}\BizTalk]
+@="BizTalk"
+"TransportType"="Schedule"
+"Constraints"=dword:00001019
+
+"ReceiveLocation_PageProv"="{2DE93EE6-CB01-4007-93E9-C3D71689A280}"
+
+"InboundEngineCLSID"="{91D61783-DE7E-47ea-BC44-95AF3B825F9D}"
+"InboundTypeName"="ScheduledTaskAdapter.ScheduledReceiver"
+"InboundAssemblyPath"="C:\\Program Files\\Biztalk ScheduledTask Adapter\\ScheduledTaskAdapter.dll"
+
+
+"AdapterMgmtTypeName"="ScheduledTaskAdapterManagement.AdapterManagement"
+"AdapterMgmtAssemblyPath"="C:\\Program Files\\Biztalk ScheduledTask Adapter\\ScheduledTaskAdapterManagement.dll"
+"PropertyNameSpace"="http://schemas.custom.com/Biztalk/2003/scheduledtask-properties"
+"AliasesXML"="<AdapterAliasList><AdapterAlias>schedule://</AdapterAlias></AdapterAliasList>"
+"ReceiveLocationPropertiesXML"="<CustomProps><AdapterConfig vt=\"8\"/></CustomProps>"
+
+[HKEY_CLASSES_ROOT\CLSID\{A35C0D84-DAE6-4de0-BDCC-3A20426AF41D}\Implemented Categories]
+[HKEY_CLASSES_ROOT\CLSID\{A35C0D84-DAE6-4de0-BDCC-3A20426AF41D}\Implemented Categories\{7F46FC3E-3C2C-405B-A47F-8D17942BA8F9}]
+@=""
+
