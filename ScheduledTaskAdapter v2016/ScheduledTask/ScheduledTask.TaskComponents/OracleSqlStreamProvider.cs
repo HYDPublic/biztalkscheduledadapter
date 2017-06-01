@@ -1,6 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Data.OracleClient;
+using System.Data.OracleSqlClient;
 using System.IO;
 using System.Text;
 using System.Transactions;
@@ -13,10 +13,10 @@ namespace ScheduledTaskAdapter.TaskComponents
     public class OracleSqlArguments
     {
         private string connectionString = null;
-        private string sqlCommand = null;
+        private string SqlCommand = null;
         private string targetNamespace = null;
         private string rootElementName = null;
-        private string sqlCommandTimeout = null;
+        private string SqlCommandTimeout = null;
 
         [Description("The connection string used to connect to a OracleSql database"),
         CategoryAttribute("OracleSql Configuration"),
@@ -31,16 +31,16 @@ namespace ScheduledTaskAdapter.TaskComponents
         CategoryAttribute("OracleSql Configuration")]
         public string SqlCommand
         {
-            get { return sqlCommand; }
-            set { sqlCommand = value; }
+            get { return SqlCommand; }
+            set { SqlCommand = value; }
         }
 
         [Description("Wait time (in seconds) before terminating the attempt to execute a OracleSql Command and generating an error."),
         CategoryAttribute("OracleSql Configuration")]
         public string SqlCommandTimeout
         {
-            get { return sqlCommandTimeout; }
-            set { sqlCommandTimeout = value; }
+            get { return SqlCommandTimeout; }
+            set { SqlCommandTimeout = value; }
         }
 
         [Description("The target namespace used in the XML document received from OracleSql Server."),
@@ -79,7 +79,7 @@ namespace ScheduledTaskAdapter.TaskComponents
             OracleSqlArguments args = (OracleSqlArguments)parameter;
             if (string.IsNullOrEmpty(args.ConnectionString))
                 throw new ArgumentException("OracleSqlStreamProvider requires connection string");
-
+            
             int parsedTimeout;
             if (!int.TryParse(args.SqlCommandTimeout, out parsedTimeout))
                 parsedTimeout = 30;
@@ -88,69 +88,42 @@ namespace ScheduledTaskAdapter.TaskComponents
             transaction = new CommittableTransaction();
             try
             {
-                MemoryStream memoryStream = null;
+                MemoryStream memoryStream = new MemoryStream();
 
-                using (OracleConnection connection = new OracleConnection(args.ConnectionString))
-                {
-                    connection.Open();
-                    OracleCommand command = new OracleCommand(args.SqlCommand, connection);
-                    command.CommandTimeout = parsedTimeout;
-
-
-
-
-                    using (OracleDataReader reader = command.ExecuteReader())
+               
+                    using (OracleConnection connection = new OracleConnection(args.ConnectionString))
                     {
-                        if (reader.HasRows)
+                        connection.Open();
+                        OracleCommand command = new OracleCommand(args.OracleCommand, connection);
+                        command.CommandTimeout = parsedTimeout;
+
+                        XmlWriterSettings settings = new XmlWriterSettings();
+                        settings.Encoding = Encoding.Unicode;
+                        settings.Indent = false;
+                        settings.OmitXmlDeclaration = false;
+
+                        using (XmlWriter writer = XmlTextWriter.Create(memoryStream, settings))
                         {
-                            memoryStream = new MemoryStream();
-                            XmlWriterSettings settings = new XmlWriterSettings();
-                            settings.Encoding = Encoding.Unicode;
-                            settings.Indent = false;
-                            settings.OmitXmlDeclaration = false;
-
-                            using (XmlWriter writer = XmlTextWriter.Create(memoryStream, settings))
+                            writer.WriteStartDocument();
+                            writer.WriteStartElement(args.RootElementName, args.TargetNamespace);
+                            using (XmlReader reader = command.ExecuteXmlReader())
                             {
-                                writer.WriteStartDocument();
-                                writer.WriteStartElement(args.RootElementName, args.TargetNamespace);
-
-                                while (reader.Read())
+                                while (!reader.EOF)
                                 {
-                                    writer.WriteStartElement("Row");
-                                    var count = reader.FieldCount;
-                                    for (int i = 0; i < count; i++)
-                                    {
-                                        var type = reader.GetDataTypeName(i);
-                                        if (type == "DATE")
-                                        {
-                                            writer.WriteElementString(reader.GetName(i), reader.IsDBNull(i) ? "" : XmlConvert.ToString(reader.GetDateTime(i), XmlDateTimeSerializationMode.Utc));
-                                        }
-                                        else
-                                        {
-                                            writer.WriteElementString(reader.GetName(i), reader.IsDBNull(i) ? "" : Convert.ToString(reader.GetValue(i)));
-                                        }
-                                    }
-                                    writer.WriteEndElement();
+                                    writer.WriteNode(reader, true);
                                 }
-                                writer.WriteEndElement();
-                                writer.Flush();
-                               
                             }
-                            memoryStream.Seek(0, SeekOrigin.Begin);
-
-                        }
-
-
+                            writer.WriteEndElement();
+                            writer.Flush();
+                        }                       
                     }
-
-                }
-
-
-
+                    //  An exception will have skipped this next line
+                   
+                memoryStream.Seek(0, SeekOrigin.Begin);
                 return memoryStream;
             }
             catch
-            {
+            {               
                 if (transaction != null)
                     transaction.Rollback();
                 throw;
